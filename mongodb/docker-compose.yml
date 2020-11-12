@@ -1,0 +1,17 @@
+version: '3.1'
+services:
+    db:
+        image: mongo:latest
+        container_name: MyMongodb
+        hostname: mongodb
+        volumes:
+            - ~/Documentos/DockerVolumes/mongo-volume/mongod.conf:/etc/mongod.conf
+            - ~/Documentos/DockerVolumes/mongo-volume/initdb.d/:/docker-entrypoint-initdb.d/
+            - ~/Documentos/DockerVolumes/mongo-volume/data:/data/db
+            - ~/Documentos/DockerVolumes/mongo-volume/log:/var/log/mongodb/
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: master
+            MONGO_INITDB_ROOT_PASSWORD: Alejandro95
+        ports:
+            - "27017:27017"
+        command: []
