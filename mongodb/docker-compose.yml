@@ -11,7 +11,7 @@ services:
             - ~/Documentos/DockerVolumes/mongo-volume/log:/var/log/mongodb/
         environment:
             MONGO_INITDB_ROOT_USERNAME: master
-            MONGO_INITDB_ROOT_PASSWORD: Alejandro95
+            MONGO_INITDB_ROOT_PASSWORD: pass
         ports:
             - "27017:27017"
         command: []

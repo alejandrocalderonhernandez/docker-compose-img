@@ -10,7 +10,7 @@ services:
         environment:
             POSTGRES_DB: postgresdb
             POSTGRES_USER: master
-            POSGRES_PASSWORD: Alejandro95
+            POSGRES_PASSWORD: pass
         ports:
             - "5432:5432"
         command: []
