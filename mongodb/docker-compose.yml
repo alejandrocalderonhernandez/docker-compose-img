@@ -1,17 +1,34 @@
-version: '3.1'
+version: '3.8'
+
 services:
-    db:
-        image: mongo:latest
-        container_name: MyMongodb
-        hostname: mongodb
-        volumes:
-            - ~/Documentos/DockerVolumes/mongo-volume/mongod.conf:/etc/mongod.conf
-            - ~/Documentos/DockerVolumes/mongo-volume/initdb.d/:/docker-entrypoint-initdb.d/
-            - ~/Documentos/DockerVolumes/mongo-volume/data:/data/db
-            - ~/Documentos/DockerVolumes/mongo-volume/log:/var/log/mongodb/
-        environment:
-            MONGO_INITDB_ROOT_USERNAME: master
-            MONGO_INITDB_ROOT_PASSWORD: pass
-        ports:
-            - "27017:27017"
-        command: []
+
+  mongo:
+    image: mongo:6.0.4
+    restart: unless-stopped
+    container_name: debbuggeandoIdeas-mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 'root'
+      MONGO_INITDB_ROOT_PASSWORD: 'secret'
+      MONGO_INITDB_DATABASE: users
+    volumes:
+      - ./init/init-script.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./data:/data/db
+      - ./data/log:/var/log/mongodb/
+    ports:
+      - "27017:27017"
+
+  mongo-express:
+    image: mongo-express:1.0.0-alpha
+    restart: unless-stopped
+    container_name: debbuggeandoIdeas-expresMongo
+    environment:
+      ME_CONFIG_MONGODB_SERVER: 'mongo'
+      ME_CONFIG_MONGODB_ADMINUSERNAME: 'root'
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 'secret'
+      ME_CONFIG_MONGODB_PORT: '27017'
+      ME_CONFIG_BASICAUTH_USERNAME: 'sa'
+      ME_CONFIG_BASICAUTH_PASSWORD: 'sa'
+    links:
+      - mongo    
+    ports:
+      - "8081:8081"

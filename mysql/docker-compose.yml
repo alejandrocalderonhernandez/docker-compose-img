@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  mySQL:
+    image: mysql:latest
+    restart: always
+    container_name: mydb
+    environment:
+      - MYSQL_DATABASE=debuggeandoideas
+      - MYSQL_ROOT_PASSWORD=debuggeandoideas01
+    ports:
+      - '3306:3306'
+    volumes:
+        - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql

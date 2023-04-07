@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.7'
 services:
     db:
         image: postgres:latest
@@ -6,11 +6,10 @@ services:
         restart: always
         hostname: postgresql
         volumes:
-            - ~/Documentos/DockerVolumes/postgres-volume/data:/var/lib/postgresql/data
+            - ~/Documents/docker-vol/postgres-volume/data:/var/lib/postgresql/data
         environment:
             POSTGRES_DB: postgresdb
             POSTGRES_USER: master
-            POSGRES_PASSWORD: pass
+            POSTGRES_PASSWORD: pas1234
         ports:
             - "5432:5432"
-        command: []
