@@ -3,4 +3,3 @@ create table customers(
     email varchar(70)  not null,
     pwd   varchar(500) not null
 );
-
